@@ -252,8 +252,9 @@ class Benchmark(LoggingBase):
         FILES = {
             "python": ["*.py", "requirements.txt*"],
             "nodejs": ["*.js", "package.json"],
+            "go": ["*.go", "go.mod"],
         }
-        WRAPPERS = {"python": "*.py", "nodejs": "*.js"}
+        WRAPPERS = {"python": "*.py", "nodejs": "*.js", "go": "*.go"}
         NON_LANG_FILES = ["*.sh", "*.json"]
         selected_files = FILES[language] + NON_LANG_FILES
         for file_type in selected_files:
@@ -316,6 +317,7 @@ class Benchmark(LoggingBase):
         FILES = {
             "python": ["*.py", "requirements.txt*"],
             "nodejs": ["*.js", "package.json"],
+            "go": ["*.go", "go.mod"],
         }
         path = os.path.join(self.benchmark_path, self.language_name)
         for file_type in FILES[self.language_name]:
@@ -399,6 +401,10 @@ class Benchmark(LoggingBase):
             with open(package_config, "w") as package_file:
                 json.dump(package_json, package_file, indent=2)
 
+    def add_deployment_package_go(self, output_dir):
+        # No additional packages to add for Go at this time
+        pass
+
     def add_deployment_package(self, output_dir):
         from sebs.faas.function import Language
 
@@ -406,6 +412,8 @@ class Benchmark(LoggingBase):
             self.add_deployment_package_python(output_dir)
         elif self.language == Language.NODEJS:
             self.add_deployment_package_nodejs(output_dir)
+        elif self.language == Language.GO:
+            self.add_deployment_package_go(output_dir)
         else:
             raise NotImplementedError
 
@@ -463,7 +471,7 @@ class Benchmark(LoggingBase):
                     }
 
             # run Docker container to install packages
-            PACKAGE_FILES = {"python": "requirements.txt", "nodejs": "package.json"}
+            PACKAGE_FILES = {"python": "requirements.txt", "nodejs": "package.json", "go": "go.mod"}
             file = os.path.join(output_dir, PACKAGE_FILES[self.language_name])
             if os.path.exists(file):
                 try:
