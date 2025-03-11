@@ -64,6 +64,26 @@
           ],
           "packages": []
         }
+      },
+      "go": {
+        "base_images": {
+          "x64": {
+            "1.18": "golang:1.18",
+            "1.19": "golang:1.19",
+            "1.20": "golang:1.20"
+          }
+        },
+        "images": [
+          "build"
+        ],
+        "username": "docker_user",
+        "deployment": {
+          "files": [
+            "handler.go",
+            "storage.go"
+          ],
+          "packages": []
+        }
       }
     },
     "architecture": ["x64"],
@@ -120,6 +140,25 @@
           "packages": {
             "uuid": "3.4.0"
           }
+        }
+      },
+      "go": {
+        "base_images": {
+          "x64": {
+            "1.18": "golang:1.18",
+            "1.19": "golang:1.19",
+            "1.20": "golang:1.20"
+          }
+        },
+        "images": [
+          "build"
+        ],
+        "deployment": {
+          "files": [
+            "handler.go",
+            "storage.go"
+          ],
+          "packages": []
         }
       }
     },
@@ -180,6 +219,26 @@
             "@azure/storage-blob": "^12.0.0",
             "uuid": "3.4.0"
           }
+        }
+      },
+      "go": {
+        "base_images": {
+          "x64": {
+            "1.18": "golang:1.18",
+            "1.19": "golang:1.19",
+            "1.20": "golang:1.20"
+          }
+        },
+        "images": [
+          "build"
+        ],
+        "username": "docker_user",
+        "deployment": {
+          "files": [
+            "handler.go",
+            "storage.go"
+          ],
+          "packages": []
         }
       }
     },
@@ -249,6 +308,26 @@
             "@google-cloud/storage": "^4.0.0",
             "uuid": "3.4.0"
           }
+        }
+      },
+      "go": {
+        "base_images": {
+          "x64": {
+            "1.18": "golang:1.18",
+            "1.19": "golang:1.19",
+            "1.20": "golang:1.20"
+          }
+        },
+        "images": [
+          "build"
+        ],
+        "username": "docker_user",
+        "deployment": {
+          "files": [
+            "handler.go",
+            "storage.go"
+          ],
+          "packages": []
         }
       }
     },
